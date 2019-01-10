@@ -87,7 +87,7 @@ ORDER: Base + typography > general layout + grid > page layout > components
 
 html {
   font-size: 62.5%; }
-  @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 90em) {
+  @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
     html {
       font-size: 75%; } }
   @media only screen and (max-width: 56.25em) and (max-height: 64em) {
@@ -194,6 +194,7 @@ body {
   transition: all .2s;
   position: relative;
   font-size: 1.6rem;
+  font-family: arial, sans-serif;
   border: none;
   cursor: pointer; }
 
@@ -220,6 +221,12 @@ body {
   color: #fff; }
   .btn--green::after {
     background-color: #55c57a; }
+
+.btn--pink {
+  background-color: #D591A5;
+  color: #fff; }
+  .btn--pink::after {
+    background-color: #D591A5; }
 
 .btn::after {
   content: "";
@@ -379,16 +386,40 @@ body {
   .composition:hover .composition__photo:not(:hover) {
     transform: scale(0.95); }
 
-.contact-strip {
+.contact-form {
+  width: 90%; }
+  .contact-form__field {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.4rem;
+    resize: none;
+    font-family: arial, sans-serif; }
+
+.about-us-strip {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
   background-color: #f5f2ef;
-  height: 20vh;
-  flex-shrink: 0;
   color: black;
-  font-size: 2rem; }
-  .contact-strip a {
+  font-family: ltc-bodoni-175, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  padding: 5rem; }
+  .about-us-strip__text-area {
+    /*
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100px;
+        */
+    flex: 4 1 500px; }
+  .about-us-strip__contact-area {
+    flex: 2 1 250px;
+    margin-right: 5%; }
+  .about-us-strip a {
     color: #A27296;
     text-decoration: none;
     font-size: 3rem;
@@ -766,9 +797,9 @@ body {
     @media only screen and (max-width: 56.25em) and (max-height: 64em) {
       .header__hero-banner__people {
         transform: translate(0%, -25%); } }
-    @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 90em) {
+    @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
       .header__hero-banner__people {
-        transform: translate(0%, -8%); } }
+        transform: translate(0%, -14%); } }
     @media only screen and (max-width: 37.5em) and (max-height: 43.75em) {
       .header__hero-banner__people {
         transform: translate(0%, -40%); } }
@@ -779,14 +810,14 @@ body {
       height: 30em;
       animation: fadeInFromFrontLeft 1s ease-in .7s;
       animation-fill-mode: backwards; }
-      @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 90em) {
+      @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
         .header__hero-banner__people-him img {
           height: 40rem; } }
     .header__hero-banner__people-her img {
       height: 30em;
       animation: fadeInFromFrontRight 1s ease-in .7s;
       animation-fill-mode: backwards; }
-      @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 90em) {
+      @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
         .header__hero-banner__people-her img {
           height: 40rem; } }
 

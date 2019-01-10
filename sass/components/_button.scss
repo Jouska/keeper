@@ -10,6 +10,7 @@
         transition: all .2s;
         position: relative;
         font-size: $default-font-size;
+        font-family:  arial, sans-serif;
 
         // Change for the <button> element
         border: none;
@@ -48,6 +49,15 @@
 
         &::after {
             background-color: $color-primary;
+        }
+    }
+
+    &--pink {
+        background-color: $color-pink;
+        color: $color-white;
+
+        &::after {
+           background-color: $color-pink; 
         }
     }
     
