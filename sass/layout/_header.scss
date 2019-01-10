@@ -1,32 +1,146 @@
 .header {
-    height: 95vh;
-    background-image: linear-gradient(
-        to right bottom,
-        rgba($color-primary-light, 0.8), 
-        rgba($color-primary-dark, 0.8)), 
-    url(../img/hero.jpg);
-    background-size: cover;
-    background-position: top;
-    position: relative;
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-
-    &__logo-box {
-        position: absolute;
-        top: 4rem;
-        left: 4rem;
+    height: 80vh;
+    margin: 0 auto;
+    text-align: center;
+    overflow: hidden;
+    flex: 1 0 auto;
+    @include clearfix;
+    @include respond(phone-land) {
+        height: 70rem;
     }
 
     &__logo {
-        height: 3.5rem;
+        font-family: ltc-bodoni-175, serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size:5.5rem;
+        padding-top: 4rem;
+        &-sub {
+            font-family: trade-gothic-next-condensed, sans-serif;
+            font-weight: 800;
+            font-style: normal;
+            text-transform: uppercase;
+            font-size:1.9rem;
+        }
     }
-    
-    &__text-box {
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
+    &__hero-banner {
+          @include clearfix;
+        &__poster {
+            height: 35rem;
+            width: 24rem;
+            opacity: 1;
+            margin: 0 auto;
+            background-image: url(../img/poster_colored4.jpg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+
+            &__text {
+                font-family: trade-gothic-next-condensed, sans-serif;
+                font-weight: 800;
+                font-style: normal;
+                text-transform: uppercase;
+                font-size:5rem;
+                line-height: 1;
+                margin-bottom: 2rem;
+                @supports (-webkit-background-clip: text) {
+                    background-image: url(../img/poster_texture_black.png);
+                    -webkit-background-clip: text;
+                    color: transparent;
+                }
+                color: black;
+                background-size: contain;
+                // @include respond(tab-land) {
+                //     font-size: 8rem;
+                // }   
+                @include respond(phone) {
+                    font-size: 5rem;
+                }   
+            }
+        }
+
+        &::before {
+            content: "";
+            z-index: -1;
+            height: 35rem;;
+            width: 24rem;
+            background-image: url(../img/poster_shadow.svg);
+            background-repeat: no-repeat;
+            position: absolute;
+            @supports (transform: translate(-50%, 0%)) {
+                transform: translate(-50%, 0%);
+                opacity: 1;
+                animation: loadInSlow 2s ease-in .7s;
+                animation-fill-mode: backwards;
+            }
+            opacity: 0;
+            background-position: center;
+            filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3));
+            @include respond(tab-land) {
+                // height: 61rem;
+                // width: 24rem;
+            } 
+            @include respond(tab-port) {
+                // height: 55rem;
+                // width: 28rem;
+            } 
+            @include respond(phone) {
+                // height: 31rem;
+                // width: 23rem;
+            }  
+
+        }
+        &__people {
+            @include clearfix;
+            width: 100vw;
+            height: 46%;
+            display: flex;
+            justify-content: center;
+            transform: translate(0%, -38%);
+            top: 48rem;
+            
+            @include respond(tab-port-small) {
+                transform: translate(0%, -25%);
+            }
+            @include respond(tab-port-large) {
+                transform: translate(0%, -14%);
+            }   
+            @include respond(phone-port-small) {
+                transform: translate(0%, -40%);
+            }
+            @include respond(phone-port-large) {
+                transform: translate(0%, -10%);
+            }
+            &-him img {
+                height: 30em;
+                animation: fadeInFromFrontLeft 1s ease-in .7s;
+                animation-fill-mode: backwards;
+                // @include respond(tab-land) {
+                //     width: 28rem;
+                // } 
+                @include respond(tab-port-large) {
+                    height: 40rem;
+                }   
+                // @include respond(phone) {
+                //     width: 30rem;
+                // }   
+            }
+            &-her img {
+                height: 30em;
+                animation: fadeInFromFrontRight 1s ease-in .7s;
+                animation-fill-mode: backwards;
+                // @include respond(tab-land) {
+                //     width: 28rem;
+                // } 
+                @include respond(tab-port-large) {
+                    height: 40rem;
+                }      
+                // @include respond(phone) {
+                //     width: 30rem;
+                // }   
+            }
+        }
     }
 }
 

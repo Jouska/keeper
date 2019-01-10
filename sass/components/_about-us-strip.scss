@@ -1,0 +1,47 @@
+.about-us-strip {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    background-color: #f5f2ef;
+    flex-shrink: 0;
+    color: black;
+    font-family: ltc-bodoni-175, serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;
+    padding: 5rem;
+    // @include respond(land) {
+    //    height: 5vh;         
+    // }  
+    // overflow: hidden;
+    // font-family: ltc-bodoni-175, serif;
+    // border-top: solid #0e0e13;
+    // @include respond(tab-land) {
+    //    height: 12vh;
+    // } 
+    // @include respond(tab-port) {
+    //     height: 11vh;
+    // }
+    &__text-area {
+        /*
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100px;
+        */
+        flex: 1 1 50%;
+    }
+    &__contact-area {
+        flex: 1 1 50%;
+        &__text {
+
+        }
+    }   
+    & a {
+        color: #A27296;
+        text-decoration: none;
+        font-size: 3rem;
+        text-transform: uppercase;
+    }
+}

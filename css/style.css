@@ -1,3 +1,21 @@
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800]: Normal styles apply
+1800px + :      Big dekstop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: Base + typography > general layout + grid > page layout > components
+
+1em = 16px (ie, divide the original pixel width by 16)
+(So .. 600px / 16px in calc = 37.5em )
+*/
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -21,10 +39,44 @@
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(3rem); }
+    transform: translateY(10rem); }
   100% {
     opacity: 1;
     transform: translateY(0); } }
+
+@keyframes loadInSlow {
+  0% {
+    opacity: 0; }
+  90% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes blurToSolid {
+  0% {
+    filter: blur(5px); }
+  100% {
+    filter: blur(0); } }
+
+@keyframes fadeInFromFrontLeft {
+  0% {
+    opacity: 1;
+    transform: scale(1.1) translateY(2rem) translateX(-1rem);
+    filter: blur(1.5px); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) translateX(0);
+    filter: blur(0px); } }
+
+@keyframes fadeInFromFrontRight {
+  0% {
+    opacity: 1;
+    transform: scale(1.1) translateY(2rem) translateX(1rem);
+    filter: blur(1.5px); }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0) translateX(0);
+    filter: blur(0px); } }
 
 *,
 *::after,
@@ -35,9 +87,30 @@
 
 html {
   font-size: 62.5%; }
+  @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
+    html {
+      font-size: 75%; } }
+  @media only screen and (max-width: 56.25em) and (max-height: 64em) {
+    html {
+      font-size: 65%; } }
+  @media only screen and (max-width: 37.5em) and (min-height: 49em) {
+    html {
+      font-size: 58%; } }
+  @media only screen and (max-width: 75em) and (max-height: 48em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 37.5em) and (max-height: 43.75em) {
+    html {
+      font-size: 50%; } }
 
 body {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  background-image: url(../img/bg-texture.jpg); }
+
+.js-loading *,
+.js-loading *:before,
+.js-loading *:after {
+  animation-play-state: paused !important; }
 
 .heading-primary {
   color: #fff;
@@ -60,12 +133,11 @@ body {
     animation: moveInRight 1s ease-out; }
 
 body {
-  font-family: "Lato", sans-serif;
+  font-family: trade-gothic-next-condensed, sans-serif;
   font-weight: 400;
   /*font-size: 16px;*/
   line-height: 1.7;
-  color: #777;
-  padding: 3.5rem; }
+  color: #333; }
 
 .heading-secondary {
   font-size: 3.5rem;
@@ -103,6 +175,9 @@ body {
 
 .u-margin-bottom-big {
   margin-bottom: 8rem !important; }
+
+.u-margin-top-medium {
+  margin-top: 4rem !important; }
 
 .u-margin-top-big {
   margin-top: 8rem !important; }
@@ -303,6 +378,35 @@ body {
       z-index: 20; }
   .composition:hover .composition__photo:not(:hover) {
     transform: scale(0.95); }
+
+.about-us-strip {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: baseline;
+  flex-wrap: wrap;
+  background-color: #f5f2ef;
+  flex-shrink: 0;
+  color: black;
+  font-family: ltc-bodoni-175, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2rem;
+  padding: 5rem; }
+  .about-us-strip__text-area {
+    /*
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100px;
+        */
+    flex: 1 1 50%; }
+  .about-us-strip__contact-area {
+    flex: 1 1 50%; }
+  .about-us-strip a {
+    color: #A27296;
+    text-decoration: none;
+    font-size: 3rem;
+    text-transform: uppercase; }
 
 .feature-box {
   background-color: rgba(255, 255, 255, 0.8);
@@ -592,25 +696,113 @@ body {
     width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem); }
 
 .header {
-  height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  position: relative;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
-  .header__logo-box {
-    position: absolute;
-    top: 4rem;
-    left: 4rem; }
+  height: 80vh;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  flex: 1 0 auto; }
+  .header::after {
+    content: "";
+    display: table;
+    clear: both; }
+  @media only screen and (max-height: 37.5em) {
+    .header {
+      height: 70rem; } }
   .header__logo {
-    height: 3.5rem; }
-  .header__text-box {
+    font-family: ltc-bodoni-175, serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 5.5rem;
+    padding-top: 4rem; }
+    .header__logo-sub {
+      font-family: trade-gothic-next-condensed, sans-serif;
+      font-weight: 800;
+      font-style: normal;
+      text-transform: uppercase;
+      font-size: 1.9rem; }
+  .header__hero-banner::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .header__hero-banner__poster {
+    height: 35rem;
+    width: 24rem;
+    opacity: 1;
+    margin: 0 auto;
+    background-image: url(../img/poster_colored4.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; }
+    .header__hero-banner__poster__text {
+      font-family: trade-gothic-next-condensed, sans-serif;
+      font-weight: 800;
+      font-style: normal;
+      text-transform: uppercase;
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 2rem;
+      color: black;
+      background-size: contain; }
+      @supports (-webkit-background-clip: text) {
+        .header__hero-banner__poster__text {
+          background-image: url(../img/poster_texture_black.png);
+          -webkit-background-clip: text;
+          color: transparent; } }
+  .header__hero-banner::before {
+    content: "";
+    z-index: -1;
+    height: 35rem;
+    width: 24rem;
+    background-image: url(../img/poster_shadow.svg);
+    background-repeat: no-repeat;
     position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center; }
+    opacity: 0;
+    background-position: center;
+    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.3)); }
+    @supports (transform: translate(-50%, 0%)) {
+      .header__hero-banner::before {
+        transform: translate(-50%, 0%);
+        opacity: 1;
+        animation: loadInSlow 2s ease-in .7s;
+        animation-fill-mode: backwards; } }
+  .header__hero-banner__people {
+    width: 100vw;
+    height: 46%;
+    display: flex;
+    justify-content: center;
+    transform: translate(0%, -38%);
+    top: 48rem; }
+    .header__hero-banner__people::after {
+      content: "";
+      display: table;
+      clear: both; }
+    @media only screen and (max-width: 56.25em) and (max-height: 64em) {
+      .header__hero-banner__people {
+        transform: translate(0%, -25%); } }
+    @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
+      .header__hero-banner__people {
+        transform: translate(0%, -14%); } }
+    @media only screen and (max-width: 37.5em) and (max-height: 43.75em) {
+      .header__hero-banner__people {
+        transform: translate(0%, -40%); } }
+    @media only screen and (max-width: 37.5em) and (min-height: 49em) {
+      .header__hero-banner__people {
+        transform: translate(0%, -10%); } }
+    .header__hero-banner__people-him img {
+      height: 30em;
+      animation: fadeInFromFrontLeft 1s ease-in .7s;
+      animation-fill-mode: backwards; }
+      @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
+        .header__hero-banner__people-him img {
+          height: 40rem; } }
+    .header__hero-banner__people-her img {
+      height: 30em;
+      animation: fadeInFromFrontRight 1s ease-in .7s;
+      animation-fill-mode: backwards; }
+      @media only screen and (min-width: 56.25em) and (min-height: 48.75em) and (max-width: 65em) {
+        .header__hero-banner__people-her img {
+          height: 40rem; } }
 
 .navigation__checkbox {
   display: none; }
