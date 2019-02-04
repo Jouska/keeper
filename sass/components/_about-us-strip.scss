@@ -1,17 +1,24 @@
 .about-us-strip {
     display: flex;
     justify-content: space-around;
-    flex-direction: row;
-    align-items: baseline;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    // flex-wrap: wrap;
     background-color: #f5f2ef;
     // flex-shrink: 0;
     color: black;
-    font-family: ltrade-gothic-next-condensed, sans-serif;
+    
     font-weight: 400;
     font-style: normal;
-    font-size: 2rem;
+    font-size: 1.8rem;
     padding: 5rem;
+    & h2 {
+        font-family: trade-gothic-next-condensed, sans-serif;
+        font-size: 4.5rem;
+        margin-bottom: 4rem;
+        text-align: center;
+    }
     // @include respond(land) {
     //    height: 5vh;         
     // }  
@@ -30,11 +37,25 @@
         flex-shrink: 0;
         flex-basis: 100px;
         */
-        flex: 4 1 500px;
+        // flex: 4 1 500px;
+        font-family: matrix-ii, serif;
+        font-weight: 300;
+        width: 40rem;
+        text-align: justify;
     }
     &__contact-area {
-        flex: 2 1 250px;
-        margin-right: 5%;
+        // flex: 2 1 250px;
+        width: 40rem;
+        margin-top: 4rem;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // align-content: center;
+
+        & form {
+            width: 100%;
+        }
+
     }   
     & a {
         color: #A27296;
